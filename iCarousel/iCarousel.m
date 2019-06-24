@@ -1790,7 +1790,7 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         {
             _decelerating = NO;
             [self pushAnimationState:YES];
-            if(_delegate) {)
+            if(_delegate) {
                 [_delegate carouselDidEndDecelerating:self];
             }
             [self popAnimationState];
