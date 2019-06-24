@@ -1453,7 +1453,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         {
             _endOffset = [self clampedOffset:_endOffset];
         }
-        [_delegate carouselWillBeginScrollingAnimation:self];
+        if(_delegate) {
+            [_delegate carouselWillBeginScrollingAnimation:self];
+        }
         [self startAnimation];
     }
     else
@@ -1771,7 +1773,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
             _scrolling = NO;
             [self depthSortViews];
             [self pushAnimationState:YES];
-            [_delegate carouselDidEndScrollingAnimation:self];
+            if(_delegate) {
+                [_delegate carouselDidEndScrollingAnimation:self];
+            }
             [self popAnimationState];
         }
     }
@@ -1786,7 +1790,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
         {
             _decelerating = NO;
             [self pushAnimationState:YES];
-            [_delegate carouselDidEndDecelerating:self];
+            if(_delegate) {)
+                [_delegate carouselDidEndDecelerating:self];
+            }
             [self popAnimationState];
             if ((_scrollToItemBoundary || fabs(_scrollOffset - [self clampedOffset:_scrollOffset]) > FLOAT_ERROR_MARGIN) && !_autoscroll)
             {
@@ -1909,7 +1915,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     if (fabs(_scrollOffset - _previousScrollOffset) > FLOAT_ERROR_MARGIN)
     {
         [self pushAnimationState:YES];
-        [_delegate carouselDidScroll:self];
+        if(_delegate) {
+            [_delegate carouselDidScroll:self];
+        }
         [self popAnimationState];
     }
     
@@ -1917,7 +1925,9 @@ NSComparisonResult compareViewDepth(UIView *view1, UIView *view2, iCarousel *sel
     if (_previousItemIndex != self.currentItemIndex)
     {
         [self pushAnimationState:YES];
-        [_delegate carouselCurrentItemIndexDidChange:self];
+        if(_delegate) {
+            [_delegate carouselCurrentItemIndexDidChange:self];
+        }
         [self popAnimationState];
     }
 
